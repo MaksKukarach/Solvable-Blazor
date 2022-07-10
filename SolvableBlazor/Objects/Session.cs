@@ -4,10 +4,9 @@ class Session
 {
     public MathProblem Problem { get; private set; }
 
-    public int Exp { get; set; }
-
     Random random = new Random(DateTime.Now.Millisecond);
 
+    public User CurrentUser { get; set; } = new User();
     public Session()
     {
         CreateMathProblem();

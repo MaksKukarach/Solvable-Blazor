@@ -1,29 +1,38 @@
-﻿@page "/generator"
+﻿    @page "/generator"
 
-@using Objects
+    @using Objects
 
-@inject Session session
-@inject UsersDbContext db
+    @inject Session session
+    @inject UsersDbContext db
 
-<h1>Solve problems, earn points.</h1>
-<content>
-    <form @onsubmit=Enter>
-        <br />
-        <h1>@problemToDisplay</h1>
-        <input class="input-short" type="text" onkeydown="Enter" @bind=@userInput />
-        <button class="btn btn-success" @onclick="Enter">ENTER</button>
-        <br />
-    </form>
-    <h4>Score: @session.Exp</h4>
-    <h3>@msg</h3>
-</content>
+    <h1>Solve problems, earn points.</h1>
+    <content>
+        <form @onsubmit=Enter>
+            <br />
+            <h1>@problemToDisplay</h1>
+            <input class="input-short" type="text" onkeydown="Enter" @bind=@userInput />
+            <button class="btn btn-success" @onclick="Enter">ENTER</button>
+            <br />
+        </form>
+        <h4>Score: @exp</h4>
+        <h3>@msg</h3>
+    </content>
 
 
 @code {
-    User? user;
-    string? userInput;
-    string? problemToDisplay;
-    string msg;
+    int exp;
+
+    string userInput = "";
+    string problemToDisplay = "";
+    string msg = "";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        LoadData();
+        Update();
+    }
 
     void Enter()
     {
@@ -33,15 +42,20 @@
             {
                 if (isAnswerCorrect())
                 {
-                    session.Exp += session.Problem.Score;
+                    session.CurrentUser.Exp += session.Problem.Score;
                     session.CreateMathProblem();
+                    msg = "Correct";
+                }
+                else
+                {
+                    msg = "Incorrect";
                 }
 
                 Update();
             }
             else
             {
-                msg = "Log in to start solving";
+                NotLoggedInAlert();
             }
 
         }
@@ -56,33 +70,49 @@
 
     bool LoggedIn()
     {
-        return user.Username != null;
+        return session.CurrentUser.Username != null;
     }
 
     void Update()
     {
-        // display new problem
+        // display problem
         problemToDisplay = session.Problem.StringValue;
 
         // empty the strings
         userInput = "";
         msg = "";
 
-        // update user exp
-        user.Exp = session.Exp;
-        db.SaveChanges();
+        //if (LoggedIn())
+        //{
+        //    exp = session.CurrentUser.Exp;
+        //}
+        //else NotLoggedInAlert();
+
+        try
+        {
+            exp = session.CurrentUser.Exp;
+
+        }
+        catch (Exception e)
+        {
+            NotLoggedInAlert();
+        }
     }
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        LoadData();
-        Update();
-    }
+        void LoadData()
+        {
+            if (db.Users.ToList().Any(u => u.Username == "aaaa"))
+            {
+                session.CurrentUser = db.Users.FirstOrDefault(u => u.Username == "Admin");    
+            }
+            else
+            {
+                NotLoggedInAlert();
+            } 
+        }
 
-    void LoadData()
-    {
-        user = db.Users.FirstOrDefault(u => u.Username == "Admin");
-        session.Exp = user.Exp;
+        void NotLoggedInAlert()
+        {
+            msg = "Вы не авторизованы.";
+        }
     }
-}

@@ -20,9 +20,6 @@
 
 
 @code {
-    [CascadingParameter]
-    public User? currentUser { get; set; }
-
     string? username = "Admin";
     string? password = "admin";
     string msg;
@@ -33,7 +30,6 @@
         {
             if (Authenticate(username, password))
             {
-                currentUser = db.Users.FirstOrDefault(user => user.Username == username);
                 Update();
                 msg = "Succesfully Logged In";
             }
@@ -50,14 +46,9 @@
 
     bool Authenticate(string? username, string? password)
     {
-        bool result = false;
-
         var user = db.Users.FirstOrDefault(user => user.Username == username);
 
-        if (user != null && user.Password == password)
-            result = true;
-
-        return result;
+        return user != null && user.Password == password;
     }
 
     bool UserExists()

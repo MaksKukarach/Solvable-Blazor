@@ -1,0 +1,81 @@
+﻿@page "/signup"
+
+@using Objects
+
+@inject UsersDbContext db
+
+<content>
+    <h1 class="header-1">Sign Up</h1>
+    <h4>Username</h4>
+    <input type="text" @bind=@username />
+    <h4>Password</h4>
+    <input type="text" @bind=@password />
+    <form @onsubmit=TrySignUp>
+        <h4>Confirm Password</h4>
+        <input type="text" @bind=@passwordConfirm />
+    </form>
+    <h3>@msg</h3>
+</content>
+
+
+@code {
+    [CascadingParameter]
+    public User? currentUser { get; set; }
+
+    string? username;
+    string? password;
+    string? passwordConfirm;
+    string msg;
+
+    void TrySignUp()
+    {
+        if (!UserExists())
+        {
+            if (ValidateSignUp())
+            {
+                AddUser();
+                db.SaveChanges();
+                Update();
+                msg = "Аккаунт успешно создан";
+            }
+            else
+            {
+                msg = "Неверный формат данных";
+            }
+        }
+        else
+        {
+            msg = "Такой пользователь уже существует";
+        }
+    }
+
+    void AddUser()
+    {
+        db.Users.Add(new User {Username = username, Password = password});
+    }
+
+    bool UserExists()
+    {
+        return db.Users.ToList().Any(u => u.Username == username);
+    }
+
+    bool ValidateSignUp()
+    {
+        bool res = false;
+
+        bool check1 = !string.IsNullOrWhiteSpace(username);
+        bool check2 = !string.IsNullOrWhiteSpace(password);
+        bool check3 = password == passwordConfirm;
+
+        res = check1 && check2 && check3;
+
+        return res;
+    }
+
+    void Update()
+    {
+        username = "";
+        password = "";
+        passwordConfirm = "";
+    }
+}

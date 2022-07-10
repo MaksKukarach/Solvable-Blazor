@@ -1,0 +1,53 @@
+﻿@page "/admin"
+
+@using SolvableBlazor.Objects
+@inject UsersDbContext db
+
+<content>
+
+    @if (users == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Level</th>
+                    <th>Exp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in users)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Username</td>
+                        <td>@user.Password</td>
+                        <td>@user.Email</td>
+                        <td>@user.Level</td>
+                        <td>@user.Exp</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+
+</content>
+
+@code {
+    List<User> users;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        users = db.Users.ToList();
+    }    
+}

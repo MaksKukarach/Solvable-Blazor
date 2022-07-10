@@ -1,0 +1,73 @@
+﻿@page "/login"
+
+@using Objects
+
+@inject UsersDbContext db
+
+<content>
+    <h1 class="header-1">Log In</h1>
+    <h3>Username</h3>
+    <input type="text" @bind=@username />
+    <form @onsubmit=TryLogIn>
+        <h3>Password</h3>
+        <input type="text" @bind=@password />
+    </form>
+    <br />
+    <h3 style="margin-left: 10px">OR</h3>
+    <a href="/signup" class="btn-purple">Sign Up</a>
+    <h3>@msg</h3>
+</content>
+
+
+@code {
+    [CascadingParameter]
+    public User? currentUser { get; set; }
+
+    string? username = "Admin";
+    string? password = "admin";
+    string msg;
+
+    void TryLogIn()
+    {
+        if (UserExists())
+        {
+            if (Authenticate(username, password))
+            {
+                currentUser = db.Users.FirstOrDefault(user => user.Username == username);
+                Update();
+                msg = "Succesfully Logged In";
+            }
+            else
+            {
+                msg = "Incorrect Password";
+            }
+        }
+        else
+        {
+            msg = "That user does not exist. You should Sign Up First";
+        }
+    }
+
+    bool Authenticate(string? username, string? password)
+    {
+        bool result = false;
+
+        var user = db.Users.FirstOrDefault(user => user.Username == username);
+
+        if (user != null && user.Password == password)
+            result = true;
+
+        return result;
+    }
+
+    bool UserExists()
+    {
+        return db.Users.ToList().Any(u => u.Username == username);
+    }
+
+    void Update()
+    {
+        username = "";
+        password = "";
+    }
+}

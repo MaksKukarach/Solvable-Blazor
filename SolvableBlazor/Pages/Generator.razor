@@ -1,0 +1,88 @@
+﻿@page "/generator"
+
+@using Objects
+
+@inject Session session
+@inject UsersDbContext db
+
+<h1>Solve problems, earn points.</h1>
+<content>
+    <form @onsubmit=Enter>
+        <br />
+        <h1>@problemToDisplay</h1>
+        <input class="input-short" type="text" onkeydown="Enter" @bind=@userInput />
+        <button class="btn btn-success" @onclick="Enter">ENTER</button>
+        <br />
+    </form>
+    <h4>Score: @session.Exp</h4>
+    <h3>@msg</h3>
+</content>
+
+
+@code {
+    User? user;
+    string? userInput;
+    string? problemToDisplay;
+    string msg;
+
+    void Enter()
+    {
+        if (!string.IsNullOrWhiteSpace(userInput))
+        {
+            if (LoggedIn())
+            {
+                if (isAnswerCorrect())
+                {
+                    session.Exp += session.Problem.Score;
+                    session.CreateMathProblem();
+                }
+
+                Update();
+            }
+            else
+            {
+                msg = "Log in to start solving";
+            }
+
+        }
+    }
+
+    bool isAnswerCorrect()
+    {
+        string answer = session.Problem.Answer.ToString();
+
+        return (userInput == answer);
+    }
+
+    bool LoggedIn()
+    {
+        return user.Username != null;
+    }
+
+    void Update()
+    {
+        // display new problem
+        problemToDisplay = session.Problem.StringValue;
+
+        // empty the strings
+        userInput = "";
+        msg = "";
+
+        // update user exp
+        user.Exp = session.Exp;
+        db.SaveChanges();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        LoadData();
+        Update();
+    }
+
+    void LoadData()
+    {
+        user = db.Users.FirstOrDefault(u => u.Username == "Admin");
+        session.Exp = user.Exp;
+    }
+}

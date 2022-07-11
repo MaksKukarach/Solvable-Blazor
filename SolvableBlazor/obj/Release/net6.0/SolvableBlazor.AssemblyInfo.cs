@@ -11,6 +11,13 @@
 using System;
 using System.Reflection;
 
+[assembly: System.Reflection.AssemblyCompanyAttribute("SolvableBlazor")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyProductAttribute("SolvableBlazor")]
+[assembly: System.Reflection.AssemblyTitleAttribute("SolvableBlazor")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

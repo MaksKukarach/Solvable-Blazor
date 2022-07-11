@@ -1,4 +1,6 @@
-﻿namespace SolvableBlazor.Objects;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SolvableBlazor.Objects;
 
 public class User
 {
@@ -8,14 +10,15 @@ public class User
     public int Exp { get; set; } = 0;
     public int Level { get; set; } = 1;
 
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string Username { get; set; } = "";
+    public string Password { get; set; } = "";
     public string Email { get; set; } = "Unassigned";
 
-    //public User(string username, string password, string email = "Unassigned")
-    //{
-    //    Username = username;
-    //    Password = password;
-    //    Email = email;
-    //}
+    [NotMapped]
+    public MathProblem Problem { get; set; } = new MathProblem();
+
+    public void CreateMathProblem()
+    {
+        Problem = new MathProblem();
+    }
 }

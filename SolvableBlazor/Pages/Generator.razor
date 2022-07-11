@@ -2,7 +2,7 @@
 
 @using Objects
 
-@inject Session session
+@inject User currentUser
 @inject UsersDbContext db
 
 <h1>Solve problems, earn points.</h1>
@@ -14,75 +14,90 @@
         <button class="btn btn-success" @onclick="Enter">ENTER</button>
         <br />
     </form>
-    <h4>Score: @session.Exp</h4>
+    <h4>Score: @exp</h4>
     <h3>@msg</h3>
 </content>
 
 
 @code {
-    User? user;
-    string? userInput;
-    string? problemToDisplay;
-    string msg;
+    int exp;
+
+    string userInput = "";
+    string problemToDisplay = "";
+    string msg = "";
 
     void Enter()
     {
         if (!string.IsNullOrWhiteSpace(userInput))
         {
-            if (LoggedIn())
+            if (IsLoggedIn())
             {
-                if (isAnswerCorrect())
+                if (IsAnswerCorrect())
                 {
-                    session.Exp += session.Problem.Score;
-                    session.CreateMathProblem();
+                    currentUser.Exp += currentUser.Problem.Score;
+                    currentUser.CreateMathProblem();
+                    db.SaveChanges();
+
+                    msg = "Correct";
+                }
+                else
+                {
+                    msg = "Incorrect";
                 }
 
                 Update();
             }
             else
             {
-                msg = "Log in to start solving";
+                NotLoggedInAlert();
             }
 
         }
     }
 
-    bool isAnswerCorrect()
+    bool IsAnswerCorrect()
     {
-        string answer = session.Problem.Answer.ToString();
+        string answer = currentUser.Problem.Answer.ToString();
 
         return (userInput == answer);
     }
 
-    bool LoggedIn()
+    bool IsLoggedIn()
     {
-        return user.Username != null;
+        return !string.IsNullOrEmpty(currentUser.Username);
     }
 
     void Update()
     {
-        // display new problem
-        problemToDisplay = session.Problem.StringValue;
+        // display problem
+        problemToDisplay = currentUser.Problem.ProblemStr;
 
         // empty the strings
         userInput = "";
         msg = "";
 
-        // update user exp
-        user.Exp = session.Exp;
-        db.SaveChanges();
+        //set score
+        exp = currentUser.Exp;
+
+        //save score to db
+        if (IsLoggedIn())
+        {
+            var user = db.Users.First(u => u.Username == currentUser.Username);
+            user.Exp = currentUser.Exp;
+            user.Problem = currentUser.Problem;
+            db.SaveChanges();
+        }
+        else NotLoggedInAlert();
     }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        LoadData();
         Update();
     }
 
-    void LoadData()
+    void NotLoggedInAlert()
     {
-        user = db.Users.FirstOrDefault(u => u.Username == "Admin");
-        session.Exp = user.Exp;
+        msg = "Вы не авторизованы.";
     }
 }

@@ -2,6 +2,7 @@
 
 @using Objects
 
+@inject User currentUser
 @inject UsersDbContext db
 
 <content>
@@ -20,12 +21,9 @@
 
 
 @code {
-    [CascadingParameter]
-    public User? currentUser { get; set; }
-
-    string? username = "Admin";
-    string? password = "admin";
-    string msg;
+    string username = "Admin";
+    string password = "admin";
+    string msg = "";
 
     void TryLogIn()
     {
@@ -33,7 +31,7 @@
         {
             if (Authenticate(username, password))
             {
-                currentUser = db.Users.FirstOrDefault(user => user.Username == username);
+                SetCurrentUser();
                 Update();
                 msg = "Succesfully Logged In";
             }
@@ -48,16 +46,20 @@
         }
     }
 
+    void SetCurrentUser()
+    {
+        var user = db.Users.First(user => user.Username == username);
+
+        currentUser.Username = user.Username;
+        currentUser.Exp = user.Exp;
+        currentUser.Problem = user.Problem;
+    }
+
     bool Authenticate(string? username, string? password)
     {
-        bool result = false;
-
         var user = db.Users.FirstOrDefault(user => user.Username == username);
 
-        if (user != null && user.Password == password)
-            result = true;
-
-        return result;
+        return user != null && user.Password == password;
     }
 
     bool UserExists()

@@ -8,21 +8,11 @@
 <div class="page">
     <main>
         <NavMenu></NavMenu>
-
-        <CascadingValue Value="@currentUser">
             <content>
                 @Body
             </content>
-        </CascadingValue>
     </main>
 </div>
 
 @code {
-    User currentUser = new User();
-
-    //protected override void OnInitialized()
-    //{
-    //    base.OnInitialized();
-    //    User currentUser = db.Users.FirstOrDefault(u => u.Username == "Admin");
-    //}
 }

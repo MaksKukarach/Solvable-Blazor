@@ -1,31 +1,38 @@
 ﻿namespace SolvableBlazor.Objects;
 
-class MathProblem
+public struct MathProblem
 {
-    readonly bool isEquation;
+    public readonly bool IsEquation = false;
 
-    readonly int numberOfElements;
+    public readonly int NumberOfElements = 0;
 
-    static readonly int upperBorder = 64;
-    public static int UpperBorder { get { return upperBorder; } }
+    public readonly int MaxValue = 64;
 
-    static readonly int lowerBorder = 1;
-    public static int LowerBorder { get { return lowerBorder; } }
+    public readonly int MinValue = 1;
 
-    int answer;
-    public int Answer { get { return answer; } }
+    public int Answer { get; private set; } = 0;
 
-    int score;
-    public int Score { get { return score; } }
+    public int Score { get; private set; } = 0;
 
-    string possibleOperations;
+    string possibleOperations = "";
 
-    string problem = "";
-    public string StringValue { get { return problem; } }
+    string problemStr = "";
+    public string ProblemStr { get { return problemStr; } }
 
     List<string> problemList = new List<string> { " " };
 
     Random random = new Random(DateTime.Now.Millisecond);
+
+    /// <summary>
+    /// Creates a random problem
+    /// </summary>
+    public MathProblem()
+    {
+        Answer = random.Next(MinValue, 10);
+        NumberOfElements = random.Next(2, 4);
+
+        CreateProblem();
+    }
 
     /// <summary>
     /// Set an answer, number of elements, and whether you need an equation
@@ -35,23 +42,19 @@ class MathProblem
     /// <param name="isEquation"></param>
     public MathProblem(int answer, int numberOfElements, bool isEquation = false)
     {
-        this.answer = answer;
-        this.numberOfElements = numberOfElements;
-        this.isEquation = isEquation;
+        Answer = answer;
+        NumberOfElements = numberOfElements;
+        IsEquation = isEquation;
 
         CreateProblem();
-        if (isEquation) TransformIntoEquation();
-        CalculateScore();
-
-        problem = String.Join("", problemList);
     }
 
     private void CreateProblem()
     {
-        problemList.Add($"{answer}");
+        problemList.Add($"{Answer}");
         problemList.Add("");
 
-        for (int i = 2; i <= numberOfElements; i++)
+        for (int i = 2; i <= NumberOfElements; i++)
         {
             while (true)  // picking random elements until it's a number
             {
@@ -68,7 +71,7 @@ class MathProblem
                         possibleOperations = "+-";
 
                         if (FindDivisors(number).Count != 0) possibleOperations += "*";
-                        if (number <= upperBorder) possibleOperations += "::";
+                        if (number <= MaxValue) possibleOperations += "::";
 
                         result = RepresentRandomly(number, problemList[index - 1], problemList[index + 1]);
 
@@ -88,11 +91,16 @@ class MathProblem
             }
 
         }
+
+        if (IsEquation) TransformIntoEquation();
+        CalculateScore();
+
+        problemStr = String.Join("", problemList);
     }
 
     private void TransformIntoEquation()
     {
-        int temp = answer;
+        int temp = Answer;
 
         while (true)
         {
@@ -100,7 +108,7 @@ class MathProblem
 
             if (int.TryParse(problemList[i], out int number))
             {
-                answer = number;
+                Answer = number;
                 problemList[i] = "x";
                 break;
             }
@@ -131,7 +139,7 @@ class MathProblem
 
     private List<string> RepresentAsSum(int number, string symbolBefore, string symbolAfter)
     {
-        int first = random.Next(lowerBorder, number);
+        int first = random.Next(MinValue, number);
         int second = number - first;
         if (AreParenthesesRequired(symbolBefore, symbolAfter))
             return new List<string> { "(", $"{first}", "+", $"{second}", ")" };
@@ -140,7 +148,7 @@ class MathProblem
 
     private List<string> RepresentAsDifference(int number, string symbolBefore, string symbolAfter)
     {
-        int first = random.Next(lowerBorder, number);
+        int first = random.Next(MinValue, number);
         int second = number + first;
         if (AreParenthesesRequired(symbolBefore, symbolAfter))
             return new List<string> { "(", $"{second}", "-", $"{first}", ")" };
@@ -156,7 +164,7 @@ class MathProblem
 
     private List<string> RepresentAsDivision(int number, string symbolBefore)
     {
-        int first = random.Next(lowerBorder + 1, 11 - (int)Math.Sqrt(number));
+        int first = random.Next(MinValue + 1, 11 - (int)Math.Sqrt(number));
         int second = number * first;
         if (symbolBefore == ":")
             return new List<string> { "(", $"{second}", ":", $"{first}", ")" };
@@ -190,13 +198,13 @@ class MathProblem
         {
             if (int.TryParse(element, out int n))
             {
-                if (n < 10) score += 1;
-                else if (n < 100) score += 2;
-                else score += 3;
+                if (n < 10) Score += 1;
+                else if (n < 100) Score += 2;
+                else Score += 3;
             }
         }
 
-        if (isEquation) score *= 2;
+        if (IsEquation) Score *= 2;
     }
 
     public void PrintInfo()

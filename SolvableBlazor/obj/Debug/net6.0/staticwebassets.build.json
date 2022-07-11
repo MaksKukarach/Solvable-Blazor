@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DxdvHjgRh8KHlokshwU4blQxKy+putDTqKFTzZYG4cI=",
+  "Hash": "pmCwo0RsdUA5u7gELv/Onq15B5CXMXWNVPx7l4AO+ZU=",
   "Source": "SolvableBlazor",
   "BasePath": "_content/SolvableBlazor",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SolvableBlazor\\wwwroot",
       "Source": "SolvableBlazor",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SolvableBlazor.styles.css",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SolvableBlazor.styles.css",
       "SourceId": "SolvableBlazor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "SolvableBlazor.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SolvableBlazor.styles.css"
+      "OriginalItemSpec": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\bundle\\SolvableBlazor.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SolvableBlazor.bundle.scp.css",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SolvableBlazor.bundle.scp.css",
       "SourceId": "SolvableBlazor",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "SolvableBlazor.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SolvableBlazor.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SolvableBlazor.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\site.css",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\style.css",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\css\\style.css",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "css/style.css",
       "AssetKind": "All",
@@ -272,10 +272,10 @@
       "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
-      "Identity": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\favicon.ico",
       "SourceId": "SolvableBlazor",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Maks\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\SolvableBlazor\\SolvableBlazor\\wwwroot\\",
       "BasePath": "_content/SolvableBlazor",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

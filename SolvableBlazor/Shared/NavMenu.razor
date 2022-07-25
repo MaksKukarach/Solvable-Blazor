@@ -1,15 +1,18 @@
 ﻿@using SolvableBlazor.Objects
-@inject User currentUser
+@inject User session
 
 
 <div class="topnav">
-    <a href="/generator" class="btn-black">Play</a>
-    @if (currentUser != null)
+    <a href="/" class="btn-black">Home</a>
+
+    @if (string.IsNullOrEmpty(session.Username))
     {
-        <a href="/login"  class="btn-black">Log In</a>
+        <a href="/generator" class="btn-black">Play</a>
+        <a href="/login" class="btn-purple">Log In</a>
     }
     else
     {
+        <a href="/generator" class="btn-purple">Play</a>
         <a href="/profile" class="btn-black">Profile</a>
     }
     <a href="/admin" class="btn btn-outline-dark">Admin</a>

@@ -3,44 +3,46 @@
 @using System.Net
 @using Objects
 
+@inject UsersDbContext db
+
 <content>
     <h1 class="header-1">Home Page</h1>
 </content>
 
 @code {
-    static readonly HttpClient client = new HttpClient();
+   // static readonly HttpClient client = new HttpClient();
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        SendCookie();
-    }
+   // protected override void OnInitialized()
+   // {
+   //     base.OnInitialized();
+   //     SendCookie();
+   // }
 
-    static async Task SendCookie()
-    {
-        var baseAddress = new Uri("https://localhost:7084");
-        var cookieContainer = new CookieContainer();
-        using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
-        using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
-        {
-            var content = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("foo", "bar"),
-                new KeyValuePair<string, string>("baz", "bazinga"),
-            });
+   // static async Task SendCookie()
+   // {
+   //     var baseAddress = new Uri("https://localhost:7084");
+   //     var cookieContainer = new CookieContainer();
+   //     using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
+   //     using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
+   //     {
+   //         var content = new FormUrlEncodedContent(new[]
+   //         {
+   //             new KeyValuePair<string, string>("foo", "bar"),
+   //             new KeyValuePair<string, string>("baz", "bazinga"),
+   //         });
 
-            //var cookieOptions = new CookieOptions()
-            //{
-            //    IsEssential = true,
-            //    Expires = DateTime.Now.AddMinutes(30),
-            //    Secure = true,
-            //    HttpOnly = false,
-            //    SameSite = SameSiteMode.None
-            //};
+   //         //var cookieOptions = new CookieOptions()
+   //         //{
+   //         //    IsEssential = true,
+   //         //    Expires = DateTime.Now.AddMinutes(30),
+   //         //    Secure = true,
+   //         //    HttpOnly = false,
+   //         //    SameSite = SameSiteMode.None
+   //         //};
 
-            cookieContainer.Add(baseAddress, new Cookie("CookieName", "cookie_value"));
-            var result = await client.PostAsync("/", content);
-            result.EnsureSuccessStatusCode(); 
-        }
-   }
+   //         cookieContainer.Add(baseAddress, new Cookie("CookieName", "cookie_value"));
+   //         var result = await client.PostAsync("/", content);
+   //         result.EnsureSuccessStatusCode(); 
+   //     }
+   //}
 }

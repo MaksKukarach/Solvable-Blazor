@@ -1,79 +1,90 @@
 ﻿namespace SolvableBlazor.Objects;
 
-public struct MathProblem
+public class MathProblem
 {
+    #region Properties
+
     public readonly bool IsEquation = false;
 
-    public readonly int NumberOfElements = 0;
+    public readonly int NumberOfElements;
 
     public readonly int MaxValue = 64;
 
     public readonly int MinValue = 1;
 
-    public int Answer { get; private set; } = 0;
+    public int Answer { get; private set; }
 
-    public int Score { get; private set; } = 0;
+    public int Score { get; private set; }
 
-    string possibleOperations = "";
+    public string Operations { get; private set; } = "";
 
     string problemStr = "";
-    public string ProblemStr { get { return problemStr; } }
 
     List<string> problemList = new List<string> { " " };
 
     Random random = new Random(DateTime.Now.Millisecond);
 
+    #endregion
+
+    #region Constructors
+
     /// <summary>
-    /// Creates a random problem
+    /// Create random simple problem
     /// </summary>
     public MathProblem()
     {
         Answer = random.Next(MinValue, 10);
         NumberOfElements = random.Next(2, 4);
+        Operations = "+-*:";
 
         CreateProblem();
     }
 
     /// <summary>
-    /// Set an answer, number of elements, and whether you need an equation
+    /// Create custom problem
     /// </summary>
     /// <param name="answer"></param>
     /// <param name="numberOfElements"></param>
     /// <param name="isEquation"></param>
-    public MathProblem(int answer, int numberOfElements, bool isEquation = false)
+    public MathProblem(int answer, int numberOfElements = 2, string operations = "+-*:", bool isEquation = false)
     {
-        Answer = answer;
-        NumberOfElements = numberOfElements;
-        IsEquation = isEquation;
+        if (numberOfElements > answer)
+        {
+            throw new ArgumentException("Number of elements must not exceed the answer");
+        }
+        else
+        {
+            Answer = answer;
+            NumberOfElements = numberOfElements;
+            Operations = operations;
+            IsEquation = isEquation;
 
-        CreateProblem();
+            CreateProblem();
+        }
     }
+
+    #endregion
+
+    #region Methods
 
     private void CreateProblem()
     {
-        problemList.Add($"{Answer}");
+        problemList.Add(Convert.ToString(Answer));
         problemList.Add("");
 
-        for (int i = 2; i <= NumberOfElements; i++)
+        for (int i = 1; i < NumberOfElements; i++)
         {
-            while (true)  // picking random elements until it's a number
+            // picking random elements until it's a number
+            while (true)
             {
                 int index = random.Next(0, problemList.Count);
                 string pickedElement = problemList[index];
 
-                if (int.TryParse(pickedElement, out int n))
+                if (int.TryParse(pickedElement, out int number))
                 {
-                    int number = Convert.ToInt32(pickedElement);
-                    if (number > 1)
+                    if (number != 1)
                     {
-                        List<string> result;
-
-                        possibleOperations = "+-";
-
-                        if (FindDivisors(number).Count != 0) possibleOperations += "*";
-                        if (number <= MaxValue) possibleOperations += "::";
-
-                        result = RepresentRandomly(number, problemList[index - 1], problemList[index + 1]);
+                        List<string> result = RepresentRandomly(number, problemList[index - 1], problemList[index + 1]);
 
                         problemList.RemoveAt(index);
 
@@ -98,30 +109,24 @@ public struct MathProblem
         problemStr = String.Join("", problemList);
     }
 
-    private void TransformIntoEquation()
-    {
-        int temp = Answer;
-
-        while (true)
-        {
-            int i = random.Next(problemList.Count);
-
-            if (int.TryParse(problemList[i], out int number))
-            {
-                Answer = number;
-                problemList[i] = "x";
-                break;
-            }
-
-        }
-
-        problemList.Add(" = ");
-        problemList.Add($"{temp}");
-    }
-
     private List<string> RepresentRandomly(int number, string symbolBefore, string symbolAfter)
     {
-        char operation = possibleOperations[random.Next(possibleOperations.Length)];
+        string allowedOperations = "";
+
+        if (Operations.Contains('+'))
+            allowedOperations += "+";
+
+        if (Operations.Contains('-'))
+            allowedOperations += "-";
+
+        if (Operations.Contains('*') && (GetDivisors(number).Length != 0))
+            allowedOperations += "*";
+
+        if (Operations.Contains(':') && (number <= MaxValue))
+            allowedOperations += "::";
+
+        char operation = allowedOperations[random.Next(allowedOperations.Length)];
+
         switch (operation)
         {
             case '+':
@@ -129,7 +134,7 @@ public struct MathProblem
             case '-':
                 return RepresentAsDifference(number, symbolBefore, symbolAfter);
             case '*':
-                return RepresentAsMultiplication(number, FindDivisors(number));
+                return RepresentAsMultiplication(number, GetDivisors(number));
             case ':':
                 return RepresentAsDivision(number, symbolBefore);
         }
@@ -155,9 +160,9 @@ public struct MathProblem
         return new List<string> { $"{second}", "-", $"{first}" };
     }
 
-    private List<string> RepresentAsMultiplication(int number, List<int> divisors)
+    private List<string> RepresentAsMultiplication(int number, int[] divisors)
     {
-        int first = divisors[random.Next(divisors.Count)];
+        int first = divisors[random.Next(divisors.Length)];
         int second = number / first;
         return new List<string> { $"{first}", "*", $"{second}" };
     }
@@ -171,19 +176,47 @@ public struct MathProblem
         return new List<string> { $"{second}", ":", $"{first}" };
     }
 
-    private List<int> FindDivisors(int number)
+    /// <summary>
+    /// Finds all the divisors of any positive integer passed as argument. 
+    /// Returns a list of int with all the divisors of the argument.
+    /// </summary>
+    public static int[] GetDivisors(int n)
     {
         List<int> divisors = new List<int>();
-        for (int i = 2; i * i <= Math.Sqrt(number); i++)
+        for (int i = 2; i <= Math.Sqrt(n); i++)
         {
-            if ((number % i == 0))
+            if (n % i == 0)
             {
                 divisors.Add(i);
-                if (i * i != number)
-                    divisors.Add(number / i);
+                if (i != n / i)
+                {
+                    divisors.Add(n / i);
+                }
             }
         }
-        return divisors;
+        divisors.Sort();
+        return divisors.ToArray();
+    }
+
+    private void TransformIntoEquation()
+    {
+        int temp = Answer;
+
+        while (true)
+        {
+            int i = random.Next(problemList.Count);
+
+            if (int.TryParse(problemList[i], out int number))
+            {
+                Answer = number;
+                problemList[i] = "x";
+                break;
+            }
+
+        }
+
+        problemList.Add(" = ");
+        problemList.Add($"{temp}");
     }
 
     private bool AreParenthesesRequired(string symbolBefore, string symbolAfter)
@@ -207,8 +240,10 @@ public struct MathProblem
         if (IsEquation) Score *= 2;
     }
 
-    public void PrintInfo()
+    public override string ToString()
     {
-        throw new NotImplementedException();
+        return problemStr;
     }
+
+    #endregion
 }

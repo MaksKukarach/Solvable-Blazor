@@ -12,17 +12,17 @@
     <input type="text" @bind=@password />
     <form @onsubmit=TrySignUp>
         <h4>Confirm Password</h4>
-        <input type="text" @bind=@passwordConfirm />
+        <input type="text" @bind=@confirmPassword />
     </form>
     <h3>@msg</h3>
 </content>
 
 
 @code {
-    string? username;
-    string? password;
-    string? passwordConfirm;
-    string msg;
+    string username = "";
+    string password = "";
+    string confirmPassword = "";
+    string msg = "";
 
     void TrySignUp()
     {
@@ -62,7 +62,7 @@
 
         bool check1 = !string.IsNullOrWhiteSpace(username);
         bool check2 = !string.IsNullOrWhiteSpace(password);
-        bool check3 = password == passwordConfirm;
+        bool check3 = password == confirmPassword;
 
         res = check1 && check2 && check3;
 
@@ -73,6 +73,6 @@
     {
         username = "";
         password = "";
-        passwordConfirm = "";
+        confirmPassword = "";
     }
 }

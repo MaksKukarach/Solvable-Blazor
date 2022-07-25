@@ -7,29 +7,47 @@
 
 <content>
     <h1 class="header-1">Log In</h1>
-    <h3>Username</h3>
-    <input type="text" @bind=@username />
     <form @onsubmit=TryLogIn>
-        <h3>Password</h3>
-        <input type="text" @bind=@password />
+        <div>
+            <label for="username">Username</label>
+        </div>
+        <div>
+            <input name="username" type="text" @bind=@username />
+        </div>
+        <div>
+            <label for="password">Password</label>
+        </div>
+        <div>
+            <input name="password" type="text" @bind=@password />
+        </div>
+        <div>
+            <input class="btn-purple" type="submit" value="Submit"/>
+        </div>
     </form>
-    <br />
-    <h3 style="margin-left: 10px">OR</h3>
+
+    <h3 style="margin-left: 20px">OR</h3>
     <a href="/signup" class="btn-purple">Sign Up</a>
-    <h3>@msg</h3>
+    <content>
+        <h3>@msg</h3>
+    </content>
 </content>
 
 
 @code {
-    string username = "Admin";
-    string password = "admin";
+    string username = "a";
+    string password = "a";
     string msg = "";
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
 
     void TryLogIn()
     {
         if (UserExists())
         {
-            if (Authenticate(username, password))
+            if (IsPassportValid(username, password))
             {
                 SetCurrentUser();
                 Update();
@@ -50,12 +68,22 @@
     {
         var user = db.Users.First(user => user.Username == username);
 
+        if (string.IsNullOrEmpty(user.Problem))
+        {
+            user.CreateMathProblem();
+            db.SaveChanges();
+        }
+
         currentUser.Username = user.Username;
         currentUser.Exp = user.Exp;
+        currentUser.ExpForNextLevel = user.ExpForNextLevel;   
+        currentUser.Level = user.Level;
         currentUser.Problem = user.Problem;
+        currentUser.ProblemAnswer = user.ProblemAnswer;
+        currentUser.ProblemScore = user.ProblemScore;
     }
 
-    bool Authenticate(string? username, string? password)
+    bool IsPassportValid(string? username, string? password)
     {
         var user = db.Users.FirstOrDefault(user => user.Username == username);
 

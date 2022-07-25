@@ -14,13 +14,15 @@
         <button class="btn btn-success" @onclick="Enter">ENTER</button>
         <br />
     </form>
-    <h4>Score: @exp</h4>
+    <h4>Level: @level Exp: @exp/@expForNextLevel</h4>
     <h3>@msg</h3>
 </content>
 
 
 @code {
+    int level;
     int exp;
+    int expForNextLevel;
 
     string userInput = "";
     string problemToDisplay = "";
@@ -34,14 +36,33 @@
             {
                 if (IsAnswerCorrect())
                 {
-                    currentUser.Exp += currentUser.Problem.Score;
+                    currentUser.Exp += currentUser.ProblemScore;
+
+                    // the action of incrementing level
+                    if (currentUser.Exp >= currentUser.ExpForNextLevel)
+                    {
+                        currentUser.Exp = 0;
+                        currentUser.Level += 1;
+
+                        int level = currentUser.Level;
+                        var levelsMap = User.LevelsMap;
+
+                        if (level > levelsMap.Count)
+                            currentUser.ExpForNextLevel = levelsMap[levelsMap.Count].Item4;
+                        else currentUser.ExpForNextLevel = levelsMap[level].Item4;
+                    }
+
                     currentUser.CreateMathProblem();
-                    db.SaveChanges();
 
                     msg = "Correct";
                 }
                 else
                 {
+                    if (currentUser.Exp < 10) currentUser.Exp = 0;
+                    else currentUser.Exp -= 10;
+
+                    db.SaveChanges();
+
                     msg = "Incorrect";
                 }
 
@@ -57,7 +78,7 @@
 
     bool IsAnswerCorrect()
     {
-        string answer = currentUser.Problem.Answer.ToString();
+        string answer = currentUser.ProblemAnswer.ToString();
 
         return (userInput == answer);
     }
@@ -69,25 +90,28 @@
 
     void Update()
     {
-        // display problem
-        problemToDisplay = currentUser.Problem.ProblemStr;
-
-        // empty the strings
-        userInput = "";
-        msg = "";
-
-        //set score
-        exp = currentUser.Exp;
-
-        //save score to db
         if (IsLoggedIn())
         {
+            level = currentUser.Level;
+            exp = currentUser.Exp;
+            expForNextLevel = currentUser.ExpForNextLevel;
+            problemToDisplay = currentUser.Problem;
+
             var user = db.Users.First(u => u.Username == currentUser.Username);
+
             user.Exp = currentUser.Exp;
+            user.ExpForNextLevel = currentUser.ExpForNextLevel;
+            user.Level = currentUser.Level;
             user.Problem = currentUser.Problem;
+            user.ProblemAnswer = currentUser.ProblemAnswer;
+            user.ProblemScore = currentUser.ProblemScore;
+
             db.SaveChanges();
+
+            userInput = "";
+            msg = "";
         }
-        else NotLoggedInAlert();
+        else NotLoggedInAlert();     
     }
 
     protected override void OnInitialized()

@@ -1770,19 +1770,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\Maks\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\SolvableBlazor\\SolvableBlazor\\SolvableBlazor.csproj",
+      "projectUniqueName": "C:\\Users\\Maks\\Source\\Repos\\SolvableBlazor\\SolvableBlazor\\SolvableBlazor.csproj",
       "projectName": "SolvableBlazor",
-      "projectPath": "C:\\Users\\user\\Source\\Repos\\SolvableBlazor\\SolvableBlazor\\SolvableBlazor.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Source\\Repos\\SolvableBlazor\\SolvableBlazor\\obj\\",
+      "projectPath": "C:\\Users\\Maks\\Source\\Repos\\SolvableBlazor\\SolvableBlazor\\SolvableBlazor.csproj",
+      "packagesPath": "C:\\Users\\Maks\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Maks\\Source\\Repos\\SolvableBlazor\\SolvableBlazor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Maks\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
